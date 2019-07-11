@@ -5,14 +5,15 @@
 let game;
 
 //document.getElementById
-$("#btn__reset").on('click', function (_event) {
+$("#btn__reset").on('click', function () {
+    // if (overlay.className === 'lose' || overlay.className === 'win')
 
     game = new Game();
     game.startGame();
 
 });
-$("#qwerty").on('click', function (_event) {
-    game.handleInteraction(_event)
+$("#qwerty .key").on('click', function (event) {
+    game.handleInteraction(event)
 });
 //  document.getElementById('qwerty').addEventListener('click', function (_event) {
 //  const e = event.target;
@@ -22,11 +23,8 @@ if (Event.className === 'key') {
     game.handleInteraction(e)
 };
 
-document.getElementById('btn__reset').addEventListener('click', function (_event) {
-    if (overlay.className === 'lose' || overlay.className === 'win') {
-        game.resetKeyboard();
-        game.resetOverlay();
-        game.resetLife();
-
-    };
-})
+//document.getElementById('btn__reset').addEventListener('click', function (_event) {
+// if (overlay.className === 'lose' || overlay.className === 'win') {
+//      game.resetKeyboard();
+//  game.resetOverlay();
+//  game.resetLife();

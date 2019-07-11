@@ -23,14 +23,19 @@ class Game {
     startGame() {
 
         $('#overlay').fadeOut(3000);
-        //game.gameReset();
-        //keyPressed.length = 0;
-
-
-
+        $("#qwerty .key").prop('disabled', false);
+        $("#qwerty .key").removeClass('chosen');
+        $("#qwerty .key").removeClass('wrong');
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
+        //resetliveHeart()
+        let $liveHeart = $("#scoreboard li img");
+        $liveHeart.attr("src", "images/liveHeart.png");
+        $liveHeart.attr("alt", "Heart Icon");
+        $liveHeart.show();
+        this.missed = 0;
     }
+
     getRandomPhrase() {
         let newPhrase = Math.floor(Math.random() * this.phrase.length);
         return (this.phrase[newPhrase]);
@@ -78,18 +83,20 @@ class Game {
             return true;
         }
     }
+    //resetKeyBoard();
 
 
-    gameOver(gameWon) {
+
+    gameOver() {
         const $startScreen = $('#overlay');
         $startScreen.show();
         //$overlay.show();
-        if (gameWon) {
+        if (this.checkForWin()) {
             $('#game-over-message').text("Congratulations! You Won!");
             $startScreen.removeClass('start');
             $startScreen.addClass('win');
         } else {
-            $('#game-over-message').text("Sorry, try again");
+            $('#game-over-message').text(`Sorry, try again. The correct phrase was "${this.activePhrase.phrase}".`);
             $startScreen.removeClass('start');
             $startScreen.addClass('lose');
         }
