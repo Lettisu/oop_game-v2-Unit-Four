@@ -4,7 +4,7 @@
 
 let game;
 
-//document.getElementById
+//document.getElementById JS vs JQ
 $("#btn__reset").on('click', function () {
     // if (overlay.className === 'lose' || overlay.className === 'win')
 
@@ -17,7 +17,7 @@ $("#qwerty .key").on('click', function (event) {
 });
 //  document.getElementById('qwerty').addEventListener('click', function (_event) {
 //  const e = event.target;
-//  let event = Event;
+//  let event = Event; recoded at later date
 
 if (Event.className === 'key') {
     game.handleInteraction(e)
@@ -27,4 +27,4 @@ if (Event.className === 'key') {
 // if (overlay.className === 'lose' || overlay.className === 'win') {
 //      game.resetKeyboard();
 //  game.resetOverlay();
-//  game.resetLife();
+//  game.resetLife(); not needed

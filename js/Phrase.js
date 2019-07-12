@@ -2,6 +2,7 @@
  * Project 4 - OOP Game App
  * Phrase.js */
 
+
 class Phrase {
     $phrase = $('#phrase ul');
     constructor(phrase) {

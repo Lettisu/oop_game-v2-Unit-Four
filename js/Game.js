@@ -45,20 +45,18 @@ class Game {
 
 
     handleInteraction(e) {
-        //let $letter = $(button).text();
-        let $letter = $(e.target).text();
 
+        let $letter = $(e.target).text();
         $(e.target).prop('disabled', true);
-        //console.log($(e.target).text());
         if (this.activePhrase.checkLetter($letter)) {
             this.activePhrase.showMatchedLetter($letter);
             $(e.target).addClass('chosen');
-            //console.log($(e.target).text());
+
 
 
         } else {
             this.removeLife();
-            // $(button).addClass('wrong');
+            // $(button).addClass('wrong'); id vs event listener
             $(e.target).addClass('wrong');
         }
         if (this.checkForWin()) {
@@ -69,8 +67,8 @@ class Game {
     removeLife() {
         this.missed = this.missed + 1;
         const lostHeart = "images/lostHeart.png";
-        //const $availHeart = $('#scoreboard li:not(.lost)').last(); //duplication
-        // const $availHeartImg = $availHeart.find('img');
+        //const $availHeart = $('#scoreboard li:not(.lost)').last(); //duplication 
+        // const $availHeartImg = $availHeart.find('img'); 
         const $lives = $("#scoreboard li");
         let $removeLife = $lives.eq(this.missed);
         let $replaceIMG = $removeLife.children().first();
@@ -99,7 +97,6 @@ class Game {
     gameOver() {
         const $startScreen = $('#overlay');
         $startScreen.show();
-        //$overlay.show();
         if (this.checkForWin()) {
             $('#game-over-message').text("Congratulations! You Won!");
             $startScreen.removeClass('start');
