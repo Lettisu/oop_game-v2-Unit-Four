@@ -28,11 +28,13 @@ class Game {
         $("#qwerty .key").removeClass('wrong');
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
-        //resetliveHeart()
+        //reset liveHeart
         let $liveHeart = $("#scoreboard li img");
         $liveHeart.attr("src", "images/liveHeart.png");
         $liveHeart.attr("alt", "Heart Icon");
-        $liveHeart.show();
+        $liveHeart.removeClass("lost");
+        $liveHeart.addClass("tries");
+        //$liveHeart.show();
         this.missed = 0;
     }
 
@@ -51,7 +53,7 @@ class Game {
         if (this.activePhrase.checkLetter($letter)) {
             this.activePhrase.showMatchedLetter($letter);
             $(e.target).addClass('chosen');
-            console.log($(e.target).text());
+            //console.log($(e.target).text());
 
 
         } else {
@@ -67,10 +69,17 @@ class Game {
     removeLife() {
         this.missed = this.missed + 1;
         const lostHeart = "images/lostHeart.png";
-        const $availHeart = $('#scoreboard li:not(.lost)').last(); //duplication
-        const $availHeartImg = $availHeart.find('img');
-        $availHeartImg.attr('src', lostHeart);
-        $availHeart.addClass('lost');
+        //const $availHeart = $('#scoreboard li:not(.lost)').last(); //duplication
+        // const $availHeartImg = $availHeart.find('img');
+        const $lives = $("#scoreboard li");
+        let $removeLife = $lives.eq(this.missed);
+        let $replaceIMG = $removeLife.children().first();
+        $replaceIMG.attr("src", lostHeart);
+        $replaceIMG.attr("alt", " Lost Icon");
+        $replaceIMG.removeClass("tries");
+        $replaceIMG.addClass("lost");
+        // $availHeartImg.attr('src', lostHeart);
+        //$availHeart.addClass('lost');
 
         if (this.missed >= 5) {
             this.gameOver(false);
