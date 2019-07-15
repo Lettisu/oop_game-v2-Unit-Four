@@ -78,7 +78,7 @@ class Game {
         $replaceIMG.addClass("lost");
         // $availHeartImg.attr('src', lostHeart);
         //$availHeart.addClass('lost');
-
+        //let $removeLife = $lives.eq(this.missed);
         if (this.missed >= 5) {
             this.gameOver(false);
         }
