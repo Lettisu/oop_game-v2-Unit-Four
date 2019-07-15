@@ -65,12 +65,12 @@ class Game {
     };
 
     removeLife() {
-        this.missed = this.missed + 1;
+        this.missed = this.missed + 1; //or move this line b4 if stmt
         const lostHeart = "images/lostHeart.png";
         //const $availHeart = $('#scoreboard li:not(.lost)').last(); //duplication 
         // const $availHeartImg = $availHeart.find('img'); 
         const $lives = $("#scoreboard li");
-        let $removeLife = $lives.eq(this.missed);
+        let $removeLife = $lives.eq(this.missed - 1);
         let $replaceIMG = $removeLife.children().first();
         $replaceIMG.attr("src", lostHeart);
         $replaceIMG.attr("alt", " Lost Icon");
